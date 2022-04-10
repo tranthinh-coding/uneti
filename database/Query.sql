@@ -1,0 +1,157 @@
+-- CREATE TABLE khoa (
+-- id INT AUTO_INCREMENT,
+-- ten_khoa VARCHAR(100),
+-- PRIMARY KEY(id)
+-- );
+
+-- -- gioi tinh: 
+-- -- [1] nam  [0] nu   [] khong tra loi
+-- CREATE TABLE giang_vien (
+-- id INT AUTO_INCREMENT,
+-- ten VARCHAR(100),
+-- ma_khoa INT,
+-- nam_sinh DATE,
+-- gioi_tinh BOOLEAN,
+-- FOREIGN KEY (ma_khoa) REFERENCES khoa(id),
+-- PRIMARY KEY(id)
+-- );
+
+-- CREATE TABLE lop_bien_che (
+-- id INT AUTO_INCREMENT,
+-- ten_lop VARCHAR(100),
+-- ma_khoa INT,
+-- ma_giang_vien INT,
+-- FOREIGN KEY (ma_khoa) REFERENCES khoa(id),
+-- FOREIGN KEY (ma_giang_vien) REFERENCES giang_vien(id),
+-- PRIMARY KEY(id)
+-- )
+
+-- CREATE TABLE khoa_hoc (
+-- id INT AUTO_INCREMENT,
+-- ten_khoa VARCHAR(100),
+-- nam_bat_dau DATE,
+-- PRIMARY KEY (id)
+-- );
+
+-- CREATE TABLE mon_hoc_phan (
+-- id INT AUTO_INCREMENT,
+-- ten_mon_hoc_phan VARCHAR(100),
+-- so_tin_chi INT,
+-- PRIMARY KEY(id)
+-- );
+
+-- CREATE TABLE lop_hoc_phan (
+-- id INT AUTO_INCREMENT,
+-- ma_khoa INT,
+-- ma_lop_bien_che INT,
+-- ma_giang_vien INT,
+-- so_luong_sv INT,
+-- hoc_ki INT,
+-- nam_hoc DATE,
+-- khoa_hoc INT,
+-- ma_mon_hoc_phan INT,
+-- FOREIGN KEY (ma_khoa) REFERENCES khoa(id),
+-- FOREIGN KEY (ma_lop_bien_che) REFERENCES lop_bien_che(id),
+-- FOREIGN KEY (ma_giang_vien) REFERENCES giang_vien(id),
+-- FOREIGN KEY (ma_mon_hoc_phan) REFERENCES mon_hoc_phan(id),
+-- UNIQUE(nam_hoc, hoc_ki, ma_mon_hoc_phan, ma_lop_bien_che),
+-- PRIMARY KEY(id)
+-- );
+
+-- gioi tinh: [1] Nam  [0] Nu  [NULL] Khac
+-- CREATE TABLE sinh_vien (
+-- id INT AUTO_INCREMENT,
+-- ho_ten VARCHAR(100),
+-- ngay_sinh DATE,
+-- gioi_tinh BOOLEAN,
+-- ma_khoa_hoc INT,
+-- ma_lop_bien_che INT,
+-- ma_khoa INT,
+-- create_at DATE,
+-- update_at DATE,
+-- FOREIGN KEY (ma_khoa_hoc) REFERENCES khoa_hoc(id),
+-- FOREIGN KEY (ma_lop_bien_che) REFERENCES lop_bien_che(id),
+-- FOREIGN KEY (ma_khoa) REFERENCES khoa(id),
+-- PRIMARY KEY(id)
+-- );
+
+-- CREATE TABLE sinh_vien_lop_hoc_phan (
+-- id_sinh_vien INT,
+-- id_lop_hoc_phan INT,
+-- FOREIGN KEY (id_sinh_vien) REFERENCES sinh_vien(id),
+-- FOREIGN KEY (id_lop_hoc_phan) REFERENCES lop_hoc_phan(id)
+-- );
+
+-- X: he 10, IV: he 4
+-- CREATE TABLE diem_trung_binh (
+-- ma_sinh_vien INT,
+-- diem_tb_hoc_ky_X FLOAT,
+-- diem_tb_hoc_ky_IV FLOAT,
+-- diem_tb_tich_luy_X FLOAT,
+-- diem_tb_tich_luy_IV FLOAT,
+-- hoc_ky INT,
+-- nam_hoc DATE,
+-- FOREIGN KEY(ma_sinh_vien) REFERENCES sinh_vien (id),
+-- UNIQUE (ma_sinh_vien, hoc_ky, nam_hoc)
+-- );
+
+-- CREATE TABLE diem_hoc_phan (
+-- ma_mon_hoc_phan INT,
+-- ma_sinh_vien INT,
+-- hoc_ky INT,
+-- nam_hoc DATE,
+-- he_so INT,
+-- diem_hoc_phan FLOAT,
+-- UNIQUE(ma_mon_hoc_phan, hoc_ky, nam_hoc, ma_sinh_vien),
+-- FOREIGN KEY (ma_mon_hoc_phan) REFERENCES mon_hoc_phan(id),
+-- FOREIGN KEY (ma_sinh_vien) REFERENCES sinh_vien(id)
+-- );
+
+-- CREATE table quyen(
+-- id INT AUTO_INCREMENT,
+-- ten_quyen VARCHAR(100),
+-- PRIMARY KEY (id)
+-- );
+
+-- CREATE TABLE tai_khoan(
+-- id INT AUTO_INCREMENT,
+-- tai_khoan INT NOT NULL,
+-- mat_khau VARCHAR(255) NOT NULL,
+-- ten_nguoi_dung VARCHAR(100),
+-- PRIMARY KEY (id)
+-- );
+
+-- CREATE TABLE extra (
+-- 	id INT,
+-- 	NAME CHAR(50),
+-- 	PRIMARY KEY(id)
+-- );
+-- 
+-- CREATE TABLE quyen_nguoi_dung (
+-- id_quyen INT,
+-- id_nguoi_dung INT,
+-- FOREIGN KEY (id_quyen) REFERENCES quyen(id),
+-- FOREIGN KEY (id_nguoi_dung) REFERENCES tai_khoan(id)
+-- );
+
+-- TRIGGER ------------------------------------------------
+-- DELIMITER $$
+-- DROP TRIGGER create_account;
+-- CREATE TRIGGER create_account_giang_vien
+-- AFTER INSERT
+-- ON giang_vien FOR EACH ROW
+-- BEGIN
+-- 	INSERT INTO tai_khoan (tai_khoan)
+-- 	VALUES (NEW.id);
+-- END$$
+-- DELIMITER;
+
+-- DELIMITER $$
+-- CREATE TRIGGER create_account_sinh_vien
+-- AFTER INSERT
+-- ON sinh_vien FOR EACH ROW
+-- BEGIN
+-- 	INSERT INTO tai_khoan (tai_khoan)
+-- 	VALUES (NEW.id);
+-- END$$
+-- DELIMITER ;

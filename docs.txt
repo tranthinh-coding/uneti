@@ -1,0 +1,37 @@
++ Sinh viên
+	- Đăng nhập
+	- Xem điểm (tất cả các môn)
+
++ Giảng viên
+	- Đăng nhập
+	- Sửa điểm sinh viên
+ 
++ Phòng đào tạo
+	- Thêm, bảo lưu sinh viên
+	- Thêm giảng viên
+	- Thêm lớp (học phần, biên chế)
+	- Thêm sửa xoá môn học phần
+	- Kết thúc kì, thêm kì mới
+	- Cấp, xoá quyền
+
+1 lop hoc phan - n sinh viên
+1 sinh viên - trong n lớp học phần
+n - n
+
+id_mon
+2 thằng cùng môn -> không insert
+
+id_mon + msv
+1 thằng 1 môn, hệ số 1 2 -> khong insert
+
+id_mon + msv + hệ số
+kì 1, kì 2, cùng hệ số 
+=> không insert
+
+id_mon + msv + hệ số + học kỳ
+=> cùng kì, khác năm
+=> Không insert
+
+id_mon + msv + hệ số + học kỳ + năm học
+
+
