@@ -3,6 +3,7 @@
   --text-secondary: #8898aa;
   --white-primary: #F3F4F6;
   --white-secondary: #FAFAF9;
+  --border-color: #52525B;
 }
 
 html {
@@ -34,7 +35,10 @@ button {
 a { 
   text-decoration: none;
   color: inherit;
-  display: block;
+  display: inline-block;
+}
+td {
+  text-align: center;
 }
 img {
   display: block;
@@ -47,6 +51,14 @@ ul, ol, li {
 
 body {
   background-color: #E2E8F0;
+}
+
+.hide-scrollbar {
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+ display: none;
 }
 
 .container {
@@ -64,7 +76,8 @@ body {
   padding: 16px 22px;
   margin-left: auto;
   margin-right: auto;
-  width: 460px; 
+  min-width: 480px;
+  max-width: 600px;
 }
 
 .sigin-title {
@@ -95,6 +108,7 @@ body {
   border: 1px solid #cbd5e1; 
   border-radius: 8px;
   padding: 10px 12px;
+  background: #fff;
   transition: all .18s linear;
 }
 
@@ -126,7 +140,27 @@ body {
 
 .form-group.error .form-control {
   background: #fff7ed;
-  
+}
+
+.form-wrapp-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.form-wrapp-group .form-group {
+  width: 260px;
+}
+
+.boxed-form {
+  padding: 12px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  margin-top: 40px;
 }
 
 .forgot-password {
@@ -158,6 +192,10 @@ body {
   background: #34d399;
 }
 
+.btn-red {
+  background: #F43F5E;
+}
+
 .btn:active {
   transform: scale(0.95);
 }
@@ -182,7 +220,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: flashMessage 2s linear forwards;
+  animation: flashMessage 3s ease-in forwards;
 }
 
 @keyframes flashMessage {
@@ -197,14 +235,16 @@ body {
     transform: translateX(0);
   }
 }
-
-.boxed {;
+.wrapper {
+  padding: 15px;
+  width: 100%;
+}
+.boxed {
   margin: auto;
   margin-top: 60px;
-  background: #F8FAFC;
+  background: #fff;
   padding: 16px 20px;
   border-radius: 16px;
-  max-width: 1200px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -212,9 +252,129 @@ body {
   display: flex;
 }
 
-.boxed .avatar {
-  border-radius: 999999px;
+.sv-navbar {
+  width: 100%;
+  background-color: #F8FAFC;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  height: 90px;
+}
+
+.sv-navbar .avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 8888px;
+  margin-right: 10px;
   overflow: hidden;
-  width: 120px;
-  height: 120px;
+}
+.sv-navbar .nav-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  height: 100%;
+}
+.sv-navbar .nav-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-header {
+  font-size: 22px;
+  color: var(--text-primary);
+  font-weight: 600;
+  padding-bottom: 18px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--text-secondary);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  padding-bottom: 22px;
+}
+
+.te-table,
+.score-table {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius:4px;
+  overflow: hidden;
+  border-spacing: 0px;
+}
+
+.te-table-heading,
+.score-table-heading {
+  min-width: 100%;
+  overflow-x: auto;
+}
+.te-table-heading th, .te-row .te-property,
+.score-table-heading th, .score-row .score-property {
+  padding: 14px;
+  border-bottom: 1px solid #CBD5E1;
+  border-right: 1px solid #CBD5E1;
+}
+
+.te-row:last-child .te-property,
+.score-row:last-child .score-property {
+  border-bottom: none;
+}
+.te-table-heading th:last-child, .te-row .te-property:last-child,
+.score-table-heading th:last-child, .score-row .score-property:last-child {
+  border-right: none;
+}
+.te-table-heading th,
+.score-table-heading th {
+  background: #DBEAFE;
+  color: var(--text-primary);
+}
+
+.ad-navbar {
+  width: 360px;
+  height: 100%;
+  min-height: 100vh;
+  background: #334155;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-bottom: 1px solid #ccc;
+  color: var(--white-primary);
+}
+
+.ad-navbar .logo {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+}
+
+.ad-navlist, .ad-navbar-name, .btn-signout {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.ad-navlist .ad-navitem .ad-navlink {
+  padding: 18px 12px;
+  width: 100%;
+  transition: all .25s linear;
+  border-radius: 12px;
+  margin: 4px 0;
+}
+
+.ad-navlist .ad-navitem.active .ad-navlink,
+.ad-navlist .ad-navitem .ad-navlink:hover {
+    background: #475569;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.btn-signout {
+  padding-left: 30px;
+}
+
+.ad-navbar-name {
+  text-align: center;
 }

@@ -1,7 +1,6 @@
-<?php 
-require_once "./function.php";
+<?php
 $message = getFlashMessage("flash-message");
-if ($message): 
+if ($message):
 ?>
 <div class="flash-message">
     <p class="flash-text">

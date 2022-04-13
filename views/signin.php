@@ -1,4 +1,4 @@
-<form method="POST" action="/models/inc/signin.inc.php" class="signin-form form">
+<form method="POST" action="?c=sy&a=signin" class="signin-form form">
     <div class="sigin-title">
       <span>Đăng nhập</sp>
     </div>
@@ -35,11 +35,9 @@
             <span>Chức vụ</span>
         </label>
         <select name="extra" id="extra" class="form-control">
-            <?php foreach($extras as $each): ?>
-                <option value="<?php echo $each['id']; ?>">
-                    <?php echo $each['name']; ?>
-                </option>
-            <?php endforeach; ?>
+            <option value="2">Sinh viên</option>
+            <option value="1">Giảng viên</option>
+            <option value="0">ADMIN</option>
         </select>
         <div class="form-error"></div>
     </div>

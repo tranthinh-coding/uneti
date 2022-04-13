@@ -5,33 +5,21 @@
 + Giảng viên
 	- Đăng nhập
 	- Sửa điểm sinh viên
+	- Kết thúc môn
+		+ Khi kết thúc môn -> tính điểm tổng bla bla
  
 + Phòng đào tạo
-	- Thêm, bảo lưu sinh viên
-	- Thêm giảng viên
-	- Thêm lớp (học phần, biên chế)
-	- Thêm sửa xoá môn học phần
-	- Kết thúc kì, thêm kì mới
-	- Cấp, xoá quyền
+	- Thêm sinh viên, giảng viên
+	- Thêm lớp (học phần)
+	- Thêm môn học phần
 
-1 lop hoc phan - n sinh viên
-1 sinh viên - trong n lớp học phần
-n - n
++ DATABASE
+- trigger:
+	+ tạo account đăng nhập sau khi insert giảng viên, sinh viên
+	+ thêm sinh viên vào bảng điểm của lớp học phần khi phân lớp học phần cho sinh viên
 
-id_mon
-2 thằng cùng môn -> không insert
-
-id_mon + msv
-1 thằng 1 môn, hệ số 1 2 -> khong insert
-
-id_mon + msv + hệ số
-kì 1, kì 2, cùng hệ số 
-=> không insert
-
-id_mon + msv + hệ số + học kỳ
-=> cùng kì, khác năm
-=> Không insert
-
-id_mon + msv + hệ số + học kỳ + năm học
-
++ Những thứ chưa đưa lên webform được:
+	- Kết thúc học kì, sau kết thúc đóng lại toàn bộ lớp học phần thuộc kì đó: ADMIN
+	- Lấy ra 3 bạn có điểm tổng kết cao nhất trong lớp học phần: TEACHER
+	- Lấy ra các bạn chưa qua môn của lớp học phần đó: TEACHER
 

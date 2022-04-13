@@ -2,11 +2,14 @@
 
 $action = $_GET['a'] ?? '';
 
+jumpToSigninFormIfNotExistsUser();
+
 switch ($action) {
 case '': default: {
-  require "models/student/student.php";
-  $studentInfo = (new StudentModel)->getUser($userSession->id);
-  require "views/student/index.php";
+  require_once "models/student/student.php";
+  $userInfo = (new StudentModel)->getStudent($userSession->id);
+  $scoreInfos  = (new StudentModel)->getScoreInfo($userSession->id);
+  require_once "views/student/index.php";
   break;
 }
 }
