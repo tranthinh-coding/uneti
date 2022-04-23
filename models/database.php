@@ -1,7 +1,9 @@
 <?php
 
+use JetBrains\PhpStorm\Pure;
+
 class Database {
-    private $_conn;
+    private mysqli|null|false $_conn;
 
     private string $_hostname  = "localhost";
     private string $_username  = "root";
@@ -25,7 +27,8 @@ class Database {
      * @param $arr
      * @return string
      */
-    private function makeWhereCondition($arr) {
+    #[Pure] private function makeWhereCondition($arr): string
+    {
         $whereCondition = [];
         foreach($arr as $column => $value) {
             $val = testInput($value);
@@ -38,7 +41,8 @@ class Database {
      * @param $sql
      * @return bool|mysqli_result
      */
-    private function runSql($sql) {
+    private function runSql($sql): mysqli_result|bool
+    {
         return mysqli_query($this->_conn, $sql);
     }
 
@@ -94,7 +98,8 @@ class Database {
      * @param $whereArr
      * @return bool|mysqli_result
      */
-    public function update($valArr, $whereArr)  {
+    public function update($valArr, $whereArr): mysqli_result|bool
+    {
         $keyValues    = [];
         foreach($valArr as $column => $value) {
             $value = testInput($value);
@@ -114,15 +119,16 @@ class Database {
     */
     public function deleteId($id): void  {
         $id = testInput($id);
-        $sql = "DELETE FROM $this->table WHERE id = '$id'";
+        $sql = "DELETE FROM $this->_table WHERE id = '$id'";
         $this->runSql($sql);
     }
 
     /**
-    * @param $arr
-    * @return int|string
-    */
-    public function create($arr) {
+     * @param $arr
+     * @return int|string
+     */
+    public function create($arr): int|string
+    {
         $fields     = implode(",", array_keys($arr));
         $values     = array_values($arr);
         $bindValues = implode(",", array_map(static function ($e) {return testInput($e);}, $values));
@@ -168,7 +174,8 @@ class Database {
     * @param $sql
     * @return bool|mysqli_result
     */
-    public function selectCustom($sql) {
+    public function selectCustom($sql): mysqli_result|bool
+    {
         return $this->runSql($sql);
     }
 
@@ -176,7 +183,8 @@ class Database {
     * @param $id
     * @return false|object|null
     */
-    public function selectId($id) {
+    public function selectId($id): object|bool|null
+    {
         $id = testInput($id);
         $sql    = "SELECT * FROM $this->_table WHERE id = '$id'";
         $result = $this->runSql($sql);
@@ -184,10 +192,11 @@ class Database {
     }
 
     /**
-    * @param string $sql
-    * @return array|bool
-    */
-    private function bindOrderBy(string $sql) {
+     * @param string $sql
+     * @return array|false
+     */
+    private function bindOrderBy(string $sql): bool|array
+    {
         if ($this->_limit >= 0) {
             $sql .= " LIMIT $this->_offset, $this->_limit";
         }

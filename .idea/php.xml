@@ -2,9 +2,9 @@
 <project version="4">
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="D:/xampp/php/PEAR" />
+      <path value="$PROJECT_DIR$/../../../xampp/php/PEAR" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
   <component name="PhpRuntimeConfiguration" document_root_path="." />
 </project>
