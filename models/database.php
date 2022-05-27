@@ -1,13 +1,13 @@
 <?php
 
-use JetBrains\PhpStorm\Pure;
-
 class Database {
     private mysqli|null|false $_conn;
 
     private string $_hostname  = "localhost";
     private string $_username  = "root";
     private string $_password  = "";
+
+    // Tai khoan tren hosting
     // private string $_username  = "qrgiamgia_think";
     // private string $_password  = "021220010911200210102002@";
     private string $_dbname    = "uneti";
@@ -27,7 +27,7 @@ class Database {
      * @param $arr
      * @return string
      */
-    #[Pure] private function makeWhereCondition($arr): string
+    private function makeWhereCondition($arr): string
     {
         $whereCondition = [];
         foreach($arr as $column => $value) {
@@ -39,9 +39,8 @@ class Database {
 
     /**
      * @param $sql
-     * @return bool|mysqli_result
      */
-    private function runSql($sql): mysqli_result|bool
+    private function runSql($sql)
     {
         return mysqli_query($this->_conn, $sql);
     }
@@ -130,10 +129,12 @@ class Database {
     public function create($arr): int|string
     {
         $fields     = implode(",", array_keys($arr));
-        $values     = array_values($arr);
-        $bindValues = implode(",", array_map(static function ($e) {return testInput($e);}, $values));
+        $bindValues = implode(",", array_values($arr));
+
         $sql        = "INSERT INTO $this->_table ($fields) VALUES ($bindValues);";
+
         $res = $this->runSql($sql);
+
         if (!$res) {
             setFlashMessage("flash-message", "Tạo tài khoản không thành công");
         }

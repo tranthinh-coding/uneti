@@ -1,8 +1,8 @@
 <div class="wrapper">
   <div class="container">
     <form class="form" action="/?c=1&a=view">
-      <input type="text" name="c" value="1" hidden>
-      <input type="text" name="a" value="view" hidden>
+      <input type="hidden" name="c" value="1" hidden>
+      <input type="hidden" name="a" value="view" hidden>
       <div class="form-wrapp-group">
         <div class="form-group">
           <label class="form-label" for="department">Khoa</label>
@@ -23,12 +23,17 @@
     </form>
   </div>
 
-  <?php if($action === 'view'): ?>
+  <?php if(in_array($action, [
+              'view',
+            'find-bad-score',
+            'find-good-score'
+      ])):
+  ?>
       <?php require_once "views/teacher/tableStudentScore.php"; ?>
   <?php endif; ?>
 </div>
 
-<?php if (!strpos($res, 'error')): ?>
+<?php if (isset($res) && !strpos($res, 'error')): ?>
 <script>
   const department = document.getElementById("department");
   const className = document.getElementById("class");

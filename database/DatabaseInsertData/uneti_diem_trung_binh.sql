@@ -1,0 +1,1 @@
+INSERT INTO uneti.diem_trung_binh (ma_sinh_vien, diem_tb_hoc_ky_X, diem_tb_hoc_ky_IV, hoc_ki, nam_hoc, diem_tb_tich_luy, diem_tb_tich_luy_IV, ma_khoa) VALUES (1, 1.6, 0.886667, null, null, null, null, null);

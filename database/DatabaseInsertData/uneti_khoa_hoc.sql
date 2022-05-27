@@ -1,0 +1,16 @@
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (1, '14', '2021-10-08');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (2, '1', '2008-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (3, '2', '2009-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (4, '3', '2010-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (5, '4', '2011-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (6, '5', '2012-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (7, '6', '2013-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (8, '7', '2014-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (9, '8', '2015-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (10, '9', '2016-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (11, '10', '2017-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (12, '11', '2018-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (13, '12', '2019-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (14, '13', '2020-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (15, '14', '2021-06-06');
+INSERT INTO uneti.khoa_hoc (id, ten_khoa, nam_bat_dau) VALUES (16, '15', '2022-06-06');

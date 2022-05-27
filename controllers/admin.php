@@ -5,9 +5,11 @@ jumpToSigninFormIfNotExistsUser();
 $action = $_GET['a'] ?? '';
 
 require_once "models/admin/admin.php";
+
+$AdminModel  = new AdminModel();
+
 switch ($action) {
     case 'create-account': {
-        $AdminModel  = new AdminModel();
         if (isset($_POST['submit'])) {
             $AdminModel->createUser();
         }
@@ -17,7 +19,6 @@ switch ($action) {
         break;
     }
     case 'create-class': {
-        $AdminModel  = new AdminModel();
         if (isset($_POST['submit'])) {
             $AdminModel->createClass();
         }
@@ -30,22 +31,25 @@ switch ($action) {
     }
     case 'ud': {
         if (isset($_POST['submit'])) {
-            (new AdminModel)->updateLopHocPhan();
+            $AdminModel->updateLopHocPhan();
         }
-        $giangVien   = (new AdminModel)->getListTeachers();
-        $lopHocPhan  = (new AdminModel)->getClassList();
+        $giangVien   = $AdminModel->getListTeachers();
+        $lopHocPhan  = $AdminModel->getClassList();
         break;
     }
     case 'view-te':
-        $list =  (new AdminModel())->getListTeachers();
+        $list =  $AdminModel->getListTeachers();
         break;
     case 'view-st': {
-        $list = (new AdminModel())->getListStudents(20);
+        $list = $AdminModel->getListStudents();
         break;
+    }
+    case 'view-st-top': {
+        $list = $AdminModel->getListStudentsTop(2);
         break;
     }
     case '': default: {
-        $userInfo = (new AdminModel)->getAdmin($userSession->id);
+        $userInfo = $AdminModel->getAdmin($userSession->id);
         break;
     }
 }

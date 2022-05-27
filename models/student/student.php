@@ -11,7 +11,7 @@ class StudentModel {
         $scoreQuery = (new Database())
             ->table('diem_hoc_phan')
             ->selectCustom(
-                "SELECT a.*, m.ten_mon_hoc_phan, m.so_tin_chi 
+                "SELECT a.*, m.ten_mon_hoc_phan, m.so_tin_chi
                 FROM (
                     SELECT * FROM diem_hoc_phan
                     WHERE ma_sinh_vien = $uid

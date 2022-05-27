@@ -22,9 +22,6 @@
       <li class="ad-navitem">
         <a href="?c=0&a=view-st" class="ad-navlink">Danh sách sinh viên</a>
       </li>
-      <li class="ad-navitem">
-        <a href="?c=0&a=view-st-top" class="ad-navlink">Danh sách sinh viên điểm cao từng khoa</a>
-      </li>
     </ul>
   </div>
   <div class="btn-signout">

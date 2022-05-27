@@ -1,0 +1,14 @@
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (1, 'Công nghệ thông tin');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (2, 'Kế toán');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (3, 'Điện');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (4, 'Quản trị kinh doanh');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (5, 'Tài chính - ngân hàng');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (6, 'Công nghệ thực phẩm');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (7, 'CNKT cơ điện tử');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (8, 'CNKT ô tô');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (9, 'CNKT điều khiển và TĐH');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (10, 'CNKT cơ khí');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (11, 'Khoa Học Cơ Bản');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (12, 'Ngoại Ngữ');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (13, 'Lý Luận Chính Trị');
+INSERT INTO uneti.khoa (id, ten_khoa) VALUES (14, 'Giáo Dục Thể Chất');

@@ -1,0 +1,9 @@
+INSERT INTO uneti.lop_hoc_phan (id, ma_khoa, ma_lop_bien_che, ma_giang_vien, khoa_hoc, ma_mon_hoc_phan, trang_thai, hoc_ki, nam_hoc) VALUES (8, 1, 1, 17, 1, 1, 1, null, null);
+INSERT INTO uneti.lop_hoc_phan (id, ma_khoa, ma_lop_bien_che, ma_giang_vien, khoa_hoc, ma_mon_hoc_phan, trang_thai, hoc_ki, nam_hoc) VALUES (9, 1, 2, 17, 1, 2, 1, null, null);
+INSERT INTO uneti.lop_hoc_phan (id, ma_khoa, ma_lop_bien_che, ma_giang_vien, khoa_hoc, ma_mon_hoc_phan, trang_thai, hoc_ki, nam_hoc) VALUES (10, 1, 1, 17, 1, 3, 1, null, null);
+INSERT INTO uneti.lop_hoc_phan (id, ma_khoa, ma_lop_bien_che, ma_giang_vien, khoa_hoc, ma_mon_hoc_phan, trang_thai, hoc_ki, nam_hoc) VALUES (12, 1, 7, 17, 1, 1, 1, null, null);
+INSERT INTO uneti.lop_hoc_phan (id, ma_khoa, ma_lop_bien_che, ma_giang_vien, khoa_hoc, ma_mon_hoc_phan, trang_thai, hoc_ki, nam_hoc) VALUES (13, 1, 1, 17, 1, 11, 1, null, null);
+INSERT INTO uneti.lop_hoc_phan (id, ma_khoa, ma_lop_bien_che, ma_giang_vien, khoa_hoc, ma_mon_hoc_phan, trang_thai, hoc_ki, nam_hoc) VALUES (14, 1, 7, 17, 1, 17, 1, null, null);
+INSERT INTO uneti.lop_hoc_phan (id, ma_khoa, ma_lop_bien_che, ma_giang_vien, khoa_hoc, ma_mon_hoc_phan, trang_thai, hoc_ki, nam_hoc) VALUES (15, 1, 8, 17, 1, 12, 1, null, null);
+INSERT INTO uneti.lop_hoc_phan (id, ma_khoa, ma_lop_bien_che, ma_giang_vien, khoa_hoc, ma_mon_hoc_phan, trang_thai, hoc_ki, nam_hoc) VALUES (16, 2, 15, 17, 1, 15, 1, null, null);
+INSERT INTO uneti.lop_hoc_phan (id, ma_khoa, ma_lop_bien_che, ma_giang_vien, khoa_hoc, ma_mon_hoc_phan, trang_thai, hoc_ki, nam_hoc) VALUES (18, 1, 3, 23, 1, 5, 1, null, null);

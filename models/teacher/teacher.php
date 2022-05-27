@@ -94,9 +94,11 @@ class TeacherModel
 		if ($this->checkSubmitAndServerPost()) {
 			// Lay diem trong form ve mot array sau do insert: id => typescore -> score
 			$arr = [];
+            unset($_POST['submit']);
 			foreach ($_POST as $key => $value) {
 				$filedId = explode("-", $key);
 				$id = end($filedId);
+
 				$filed = $filedId[0];
 				$column = '';
 				if (!isset($arr[$id])) {
@@ -104,35 +106,38 @@ class TeacherModel
 				}
 				switch ($filed) {
 					case 'hs1': {
-							$column = "he_so_1";
-							break;
-						}
+                        $column = "he_so_1";
+                        break;
+                    }
 					case 'hs2': {
-							$column = "he_so_2";
-							break;
-						}
+                        $column = "he_so_2";
+                        break;
+                    }
 					case 'cc': {
-							$column = "diem_chuyen_can";
-							break;
-						}
+                        $column = "diem_chuyen_can";
+                        break;
+                    }
 					case 'thi': {
-							$column = "diem_thi";
-							break;
-						}
+                        $column = "diem_thi";
+                        break;
+                    }
 				}
-				if ($value < 0 || $value > 10) {
-					setFlashMessage("flash-message", "Xuất hiện điểm không hợp lệ. Sinh viên id = $id");
+
+                if ($value >= 0 && $value <= 10) {
+                    $arr[$id] += [$column => $value];
+                }
+                else if ($value > 10) {
+					setFlashMessage("flash-message", "Xuất hiện điểm không hợp lệ. Sinh viên id = $id, value = $value");
 					redirect("/?c=1&a=view&class=$class&de=$depart");
 				}
-				if ($value || $value == '0') {
-					$arr[$id] += [$column => $value];
-				}
 			}
+
 			foreach ($arr as $key => $val) {
 				if ($val != 0 && empty($val)) {
 					unset($arr[$key]);
 				}
 			}
+
 			$db = new Database();
 			$db->table('diem_hoc_phan');
 			if (empty($arr)) return;
@@ -162,7 +167,7 @@ class TeacherModel
 			
 		$str = "UPDATE diem_hoc_phan 
 		SET he_so_1 = CASE 
-			WHEN he_so_1 IS NULL THEN 0 
+			WHEN he_so_1 IS NULL THEN 0
 			ELSE he_so_1
 			END,
 		he_so_2 = CASE 
@@ -203,6 +208,90 @@ class TeacherModel
 			->table('lop_hoc_phan')
 			->selectCustom($str);
 	}
+
+    public function findGoodStudents($class): array
+    {
+        $classModel = (new Database())
+            ->table('lop_hoc_phan')
+            ->selectId($class);
+
+        if ( ! $classModel->trang_thai) {
+            $students = (new Database())
+                ->selectCustom("
+                select SV.id as ma_sinh_vien, SV.ho, SV.ten, DHP.he_so_1, DHP.he_so_2,
+                    DHP.diem_chuyen_can, DHP.diem_tong_ket, DHP.diem_thi, DHP.diem_qua_trinh,
+                     DHP.tong_ket_he_4, DHP.xep_loai
+                from diem_hoc_phan as DHP
+                INNER JOIN sinh_vien SV
+                    ON SV.id = DHP.ma_sinh_vien
+                WHERE DHP.ma_lop_hoc_phan = $class
+                ORDER BY DHP.diem_tong_ket DESC
+                LIMIT 3;
+                ");
+
+            if ($students) {
+                $res = [];
+                foreach ($students as $each) {
+                    $res[] = $each;
+                }
+                return $res;
+            }
+        }
+        setFlashMessage("flash-message", "Lớp học phần này chưa kết thúc");
+        return [];
+    }
+
+    public function findBadStudents($class) {
+        $classModel = (new Database())
+            ->table('lop_hoc_phan')
+            ->selectId($class);
+
+        if ( ! $classModel->trang_thai) {
+            $students = (new Database())
+                ->selectCustom("
+                select SV.id as ma_sinh_vien, SV.ho, SV.ten, DHP.he_so_1, DHP.he_so_2,
+                    DHP.diem_chuyen_can, DHP.diem_tong_ket, DHP.diem_thi, DHP.diem_qua_trinh,
+                     DHP.tong_ket_he_4, DHP.xep_loai
+                from diem_hoc_phan as DHP
+                INNER JOIN sinh_vien SV
+                    ON SV.id = DHP.ma_sinh_vien
+                WHERE DHP.xep_loai = 'F' AND DHP.ma_lop_hoc_phan = $class;
+                ");
+
+            if ($students) {
+                $res = [];
+                foreach ($students as $each) {
+                    $res[] = $each;
+                }
+                return $res;
+            }
+        }
+        setFlashMessage("flash-message", "Lớp học phần này chưa kết thúc");
+        return [];
+    }
+
+    /**
+     * @param $class
+     * @return void
+     */
+    public function resetClassSeccion($class) {
+        $sql = "UPDATE diem_hoc_phan 
+		SET he_so_1 = NULL,
+		he_so_2 = NULL,
+		diem_chuyen_can = NULL,
+		diem_thi = NULL,
+		diem_qua_trinh = NULL,
+		diem_tong_ket = NULL,
+		tong_ket_he_4 = NULL,
+		xep_loai = NULL
+		WHERE 
+		ma_lop_hoc_phan = $class";
+
+        (new Database())->selectCustom($sql);
+
+        $sql = "Update lop_hoc_phan set trang_thai = 1 WHERE id = $class";
+        (new Database())->selectCustom($sql);
+    }
 
     /**
      * @param $class

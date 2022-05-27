@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 require_once "models/database.php";
 
@@ -17,7 +18,7 @@ class AdminModel {
      */
     private function checkDataValid($to, ...$data): void {
         foreach($data as $val) {
-            if (!$val && $val !== 0) {
+            if (!$val && $val !== 0 && $val !== '0') {
                 setFlashMessage("flash-message", "Dữ liệu không hợp lệ");
                 redirect($to);
             }
@@ -110,7 +111,7 @@ class AdminModel {
     public function getClassList() {
         $result = (new Database())
             ->selectCustom(
-                "SELECT lhp.ma_khoa, mh.ten_mon_hoc_phan as ten_mon, lbc.ten_lop FROM lop_hoc_phan lhp
+                "SELECT lhp.id, lhp.ma_khoa, mh.ten_mon_hoc_phan as ten_mon, lbc.ten_lop FROM lop_hoc_phan lhp
                 LEFT JOIN mon_hoc_phan mh ON lhp.ma_mon_hoc_phan = mh.id
                 LEFT JOIN lop_bien_che lbc ON lhp.ma_lop_bien_che = lbc.id;"
             );
@@ -120,7 +121,7 @@ class AdminModel {
     /**
      * @return array|false
      */
-    public function getListStudents($limit = 10) {
+    public function getListStudents($limit = 1000) {
         $result = (new Database())
             ->selectCustom(
                 "SELECT a.*, kh.ten_khoa, lbc.ten_lop, k.ten_khoa as khoa
@@ -160,8 +161,8 @@ class AdminModel {
                 'ten' => "'$lastname'",
                 'ho' => "'$firstname'",
                 'ngay_sinh' => "'$birthday'",
-                'gioi_tinh' => (string)$gender,
-                'ma_khoa' => (string)$department
+                'gioi_tinh' => $gender,
+                'ma_khoa' => $department
             ];
             $db = new Database();
             if ($type === "st") {
@@ -169,13 +170,15 @@ class AdminModel {
                 $course         = testInput($_POST['course']);
                 $payroll        = testInput($_POST['payroll']);
                 $this->checkDataValid("/?c=0&a=create-account", $course, $payroll);
-                $data += ['ma_khoa_hoc' => (string)$course,
-                    'ma_lop_bien_che' => (string)$payroll];
+                $data += ['ma_khoa_hoc' => $course,
+                    'ma_lop_bien_che' => $payroll
+                ];
             } else if ($type === "te") {
                 $db->table("giang_vien");
             } else {
                 redirect("/?c=0&a=create-account");
             }
+
             $db->create($data);
             setFlashMessage("flash-message", "Tạo tài khoản thành công");
             redirect("/?c=0&a=create-account");
@@ -206,11 +209,13 @@ class AdminModel {
     public function updateLopHocPhan(): void {
         if ($this->checkSubmitAndServerPost()) {
             $teacher = testInput($_POST['teacher']);
-            $payroll = testInput($_POST['class-section']);
-            $this->checkDataValid('/?c=0&a=ud', $teacher, $payroll);
+            $classId = testInput($_POST['class-section']);
+            $this->checkDataValid('/?c=0&a=ud', $teacher, $classId);
 
-            (new Database())->table("lop_hoc_phan")->update($payroll, [
-                'ma_giang_vien' => $teacher
+            (new Database())->table("lop_hoc_phan")->update([
+                'ma_giang_vien' => $teacher,
+            ], [
+                'id' => $classId,
             ]);
             setFlashMessage("flash-message", "Phân lớp thành công");
         }

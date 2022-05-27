@@ -12,7 +12,23 @@
         <h3 class="table-header">Nhập điểm sinh viên</h3>
           <?php if ($statusClass): ?>
             <button type="submit" name="submit" class="btn btn-red">Lưu điểm</button>
-            <a href="/?c=1&a=finish&de=<?php echo $depart; ?>&class=<?php echo $class; ?>" class="btn btn-red">Kết thúc môn</a>
+            <a
+              href="/?c=1&a=finish&de=<?php echo $depart; ?>&class=<?php echo $class; ?>"
+              class="btn btn-red"
+            >Kết thúc môn</a>
+          <?php else: ?>
+              <a
+                href="/?c=1&a=reset-class&de=<?php echo $depart; ?>&class=<?php echo $class; ?>"
+                class="btn btn-red"
+              >Reset điểm của lớp</a>
+              <a
+                href="/?c=1&a=find-bad-score&de=<?php echo $depart; ?>&class=<?php echo $class; ?>"
+                class="btn btn-red"
+              >DS SV Trượt môn</a>
+              <a
+                href="/?c=1&a=find-good-score&de=<?php echo $depart; ?>&class=<?php echo $class; ?>"
+                class="btn btn-red"
+              >DS Top 3</a>
           <?php endif; ?>
         <style> 
           .table-wrapper {
@@ -83,3 +99,10 @@
     </form>
   </div>
 <?php endif; ?>
+<?php if (!$listStudent) {
+    echo "
+        <div class='container'>
+            <h2>Danh sách rỗng.</h2>
+        </div>
+    ";
+}
