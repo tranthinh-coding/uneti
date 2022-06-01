@@ -48,5 +48,5 @@
       - Lấy ra các bạn chưa qua môn của lớp học phần đó. (Đã làm)
 
 * Khi quản trị viên (Phòng Đào tạo) kết thúc học kì, sẽ xác nhận chạy con bot trên hosting
-* Trên hosting co 1 con bot. Cai dat 1p chay file models/admin/upadteDiemTrungBinh.php cho tung lop
-* Nếu để update kết thúc học kì và tổng kết điểm cho quá nhiều sinh viên cùng lúc => Chết Database
+* Cai dat 1p chay file models/admin/upadteDiemTrungBinh.php cho tung lop
+* Nếu để update kết thúc học kì và tổng kết điểm cho quá nhiều sinh viên cùng lúc => Rất dễ làm cho Database quá tải
