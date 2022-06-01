@@ -29,6 +29,8 @@
     - Sửa điểm sinh viên
     - Kết thúc môn
         + Khi kết thúc môn -> tính điểm tổng bla bla
+        + Xem danh sách các bạn chưa qua môn (Điểm F), xem top ba bạn có điểm cao nhất
+    - Table bị ẩn thanh scroll, giữ phím Shifl trên bàn phím và lăn chuột để xem được phía sau
 
 + Phòng đào tạo
     - Thêm sinh viên, giảng viên
