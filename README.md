@@ -3,7 +3,7 @@
 
 ## [Xem Demo](https://uneti.qrgiamgia.com/)
 
-* Tài khoản test:
+#### Tài khoản test:
     - ADMIN:
         + account: kadmin, tadmin, dadmin
         + password: admin
@@ -49,6 +49,3 @@
       - Lấy ra 3 bạn có điểm tổng kết cao nhất trong lớp học phần: TEACHER. (Đã làm)
       - Lấy ra các bạn chưa qua môn của lớp học phần đó. (Đã làm)
 
-* Khi quản trị viên (Phòng Đào tạo) kết thúc học kì, sẽ xác nhận chạy con bot trên hosting
-* Cai dat 1p chay file models/admin/upadteDiemTrungBinh.php cho tung lop
-* Nếu để update kết thúc học kì và tổng kết điểm cho quá nhiều sinh viên cùng lúc => Rất dễ làm cho Database quá tải
