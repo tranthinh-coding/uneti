@@ -11,7 +11,7 @@
     - Giảng viên, sinh viên:
         + account: các số từ 1
         + password: uneti
-    #### + Giảng viên đã có phân lớp để test:
+   #### + Giảng viên đã có phân lớp để test:
         + account: 17
         + password: uneti
         + Khoa: CNTT, lớp CSDL Tin 14A6
