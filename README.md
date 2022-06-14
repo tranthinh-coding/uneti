@@ -40,12 +40,11 @@
 ## DATABASE
   + trigger:
     - tính điểm trung bình của từng sinh viên sau khi quản trị viên (Phòng đào tạo) xác nhận kết thúc học kỳ
-        (chưa đưa được lên web do có nhiều sinh viên, chạy trigger 1 lần update nhiều sinh viên -> Chết Database)
     - tạo account đăng nhập sau khi insert giảng viên, sinh viên
     - thêm sinh viên vào bảng điểm của lớp học phần khi phân lớp học phần cho sinh viên
 
   + Những thứ chưa đưa lên webform được:
-      - Kết thúc học kì, sau kết thúc đóng lại toàn bộ lớp học phần thuộc kì đó: ADMIN (Phòng đào tạo)
+      - Kết thúc học kì, sau kết thúc đóng lại toàn bộ lớp học phần thuộc kì đó: ADMIN (Phòng đào tạo)(Đã làm với việc cho 		Giảng viên chủ động kết thúc môn)
       - Lấy ra 3 bạn có điểm tổng kết cao nhất trong lớp học phần: TEACHER. (Đã làm)
       - Lấy ra các bạn chưa qua môn của lớp học phần đó. (Đã làm)
 
